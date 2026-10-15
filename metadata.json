@@ -1,0 +1,6 @@
+{
+  "name": "Student Fit: Health-Related Fitness Assessment",
+  "description": "Mobile-friendly Philippine PE health-related fitness assessment app with student tests, DepEd/WHO standards scoring, and printable reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

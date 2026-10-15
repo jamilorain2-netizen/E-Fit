@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-heading: 'Anton', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
+
+  --color-brand-red: #E10600;
+  --color-brand-black: #0A0A0A;
+  --color-brand-white: #FFFFFF;
+  --color-brand-gray: #8A8A8A;
+}
+
+@layer base {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    @apply antialiased bg-[#FFFFFF] text-[#0A0A0A] dark:bg-[#0A0A0A] dark:text-[#FFFFFF];
+    transition: background-color 0.15s ease, color 0.15s ease;
+    font-size: 1rem;
+  }
+
+  /* Anton ONLY used on h1, h2 */
+  h1, h2 {
+    font-family: var(--font-heading);
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.05;
+  }
+
+  h2 {
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
+    line-height: 1.1;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    line-height: 1.2;
+  }
+
+  /* Everything else: DM Sans, normal case, no letter spacing, 16px minimum */
+  label, button, input, select, textarea, th, td, nav, .badge, span, p, a {
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  label, button, th, td {
+    font-size: 1rem; /* 16px minimum */
+  }
+}
+
+.text-secondary {
+  color: #8A8A8A !important;
+}
+
+.dark .text-secondary {
+  color: #8A8A8A !important;
+}
+
+/* Cards: 3px solid black border (white in dark mode), 0 border radius, hard offset shadow */
+.gym-card {
+  border: 3px solid #0A0A0A !important;
+  border-radius: 0px !important;
+  box-shadow: 6px 6px 0px 0px #0A0A0A !important;
+  background-color: #FFFFFF !important;
+}
+
+.dark .gym-card {
+  border: 3px solid #FFFFFF !important;
+  border-radius: 0px !important;
+  box-shadow: 6px 6px 0px 0px #FFFFFF !important;
+  background-color: #0A0A0A !important;
+  color: #FFFFFF !important;
+}
+
+/* Primary Buttons: solid red, white text, DM Sans, 16px min, 56px tall, 3px border, hard shadow */
+.gym-button-primary {
+  background-color: #E10600 !important;
+  color: #FFFFFF !important;
+  height: 56px !important;
+  min-height: 56px !important;
+  border: 3px solid #0A0A0A !important;
+  border-radius: 0px !important;
+  box-shadow: 6px 6px 0px 0px #0A0A0A !important;
+  font-family: var(--font-sans) !important;
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  transition: transform 0.05s ease, box-shadow 0.05s ease !important;
+}
+
+.dark .gym-button-primary {
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 6px 6px 0px 0px #FFFFFF !important;
+}
+
+.gym-button-primary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 7px 7px 0px 0px #0A0A0A !important;
+}
+
+.dark .gym-button-primary:hover {
+  box-shadow: 7px 7px 0px 0px #FFFFFF !important;
+}
+
+.gym-button-primary:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 3px 3px 0px 0px #0A0A0A !important;
+}
+
+.dark .gym-button-primary:active {
+  box-shadow: 3px 3px 0px 0px #FFFFFF !important;
+}
+
+/* Secondary Buttons: white with black outline (black bg in dark mode), DM Sans, 16px min */
+.gym-button-secondary {
+  background-color: #FFFFFF !important;
+  color: #0A0A0A !important;
+  height: 56px !important;
+  min-height: 56px !important;
+  border: 3px solid #0A0A0A !important;
+  border-radius: 0px !important;
+  box-shadow: 6px 6px 0px 0px #0A0A0A !important;
+  font-family: var(--font-sans) !important;
+  letter-spacing: 0 !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  transition: transform 0.05s ease, box-shadow 0.05s ease !important;
+}
+
+.dark .gym-button-secondary {
+  background-color: #0A0A0A !important;
+  color: #FFFFFF !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 6px 6px 0px 0px #FFFFFF !important;
+}
+
+.gym-button-secondary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 7px 7px 0px 0px #0A0A0A !important;
+}
+
+.dark .gym-button-secondary:hover {
+  box-shadow: 7px 7px 0px 0px #FFFFFF !important;
+}
+
+.gym-button-secondary:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 3px 3px 0px 0px #0A0A0A !important;
+}
+
+.dark .gym-button-secondary:active {
+  box-shadow: 3px 3px 0px 0px #FFFFFF !important;
+}
+
+/* Large score numbers (Anton font) */
+.font-scoreboard, .score-number {
+  font-family: var(--font-heading) !important;
+  letter-spacing: 0 !important;
+}
+
+/* Red hand-drawn style underline under main headings */
+.marker-underline {
+  border-bottom: 5px solid #E10600 !important;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.thick-divider {
+  border-bottom: 3px solid #0A0A0A;
+}
+
+.dark .thick-divider {
+  border-bottom: 3px solid #FFFFFF;
+}
+
+:focus-visible {
+  outline: 3px solid #E10600 !important;
+  outline-offset: 2px !important;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  header, footer, nav, .print\:hidden {
+    display: none !important;
+  }
+  .gym-card {
+    border: 2px solid black !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+  }
+}

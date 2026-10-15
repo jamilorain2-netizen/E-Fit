@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isValidClassCode(code) {
+      return code is string && code.size() >= 4 && code.size() <= 8;
+    }
+
+    function isValidLrn(lrn) {
+      return lrn is string && lrn.size() == 12;
+    }
+
+    // Students Collection
+    // Students enroll themselves with their 12-digit LRN, class code, and hashed PIN.
+    // Teachers can view and manage students enrolled in their class roster.
+    match /students/{studentId} {
+      allow create: if request.resource.data.lrn is string
+                    && request.resource.data.classCode is string
+                    && request.resource.data.pinHash is string;
+      allow read: if true;
+      allow update, delete: if true;
+    }
+
+    // Assessments Collection
+    // Stores comprehensive physical fitness assessment records for each student.
+    match /assessments/{assessmentId} {
+      allow create, update: if request.resource.data.studentId is string;
+      allow read: if true;
+      allow delete: if true;
+    }
+
+    // Student Results Collection
+    // Real-time score stream for the Teacher Dashboard onSnapshot feed.
+    match /student_results/{resultId} {
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.testType is string;
+      allow read: if true;
+      allow delete: if true;
+    }
+  }
+}
